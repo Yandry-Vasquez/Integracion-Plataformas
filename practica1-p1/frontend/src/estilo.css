@@ -1,0 +1,27 @@
+.contenedor{
+    
+    background: rgb(163, 157, 214);
+    
+}
+label{
+    display: inline-block;
+    width: 90px;
+   
+}
+ form{
+    margin: 0 auto;
+    width: 400px;
+ }
+
+.p{
+background-color: rgb(234, 255, 227)
+ 
+
+}
+.btg{
+  margin-right: auto;
+  right: 1000px;
+}
+.b{
+background-color: aqua;
+}
