@@ -1,0 +1,23 @@
+FROM node:19-alpine as dev-dependencies
+WORKDIR /app
+COPY package.json ./
+RUN npm install
+
+
+FROM node:19-alpine as run-dev
+WORKDIR /app
+COPY --from=dev-dependencies /app/node_modules ./node_modules
+COPY . .
+ENV PORT=4000
+ENV MONGO_URI='mongodb+srv://admin:admin@cluster0.6cmrtjq.mongodb.net/?retryWrites=true&w=majority'
+RUN npm run test
+
+
+FROM node:19-alpine as run-prod
+WORKDIR /app
+COPY package.json ./
+RUN npm install --prod
+COPY . .
+ENV PORT=4000
+ENV MONGO_URI='mongodb+srv://admin:admin@cluster0.6cmrtjq.mongodb.net/?retryWrites=true&w=majority'
+CMD [ "npm", "start" ]
